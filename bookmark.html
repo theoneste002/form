@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+    <style>
+        /* CSS for styling the page */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+
+        .task-container {
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            color: #191970;
+            font-size: 24px;
+        }
+
+        .input-container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        button {
+            width: 20%;
+            background-color: #191970;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+        }
+
+        button:hover {
+            background-color: #333366;
+        }
+
+        .task-list {
+            margin-top: 20px;
+        }
+
+        .task-item {
+            background-color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .task-item h2 {
+            font-size: 18px;
+            margin: 0;
+            color: #191970;
+        }
+
+        .task-item p {
+            font-size: 14px;
+            margin: 5px 0 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="task-container">
+        <h1>Task of Management System</h1>
+
+        <!-- Input and Add Button -->
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Typing Task here">
+            <button onclick="addTask()">Add</button>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-list" id="taskList">
+            <!-- Task items will be appended here -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to add a new task
+        let taskCount = 1;
+
+        function addTask() {
+            // Get the task description from input field
+            const taskDescription = document.getElementById("taskInput").value;
+
+            // Check if the input field is empty
+            if (taskDescription.trim() === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+            // Create a new task element
+            const taskItem = document.createElement("div");
+            taskItem.className = "task-item";
+
+            // Create a title element for the task
+            const taskTitle = document.createElement("h2");
+            taskTitle.textContent = `Task ${taskCount++}`;
+
+            // Create a description paragraph for the task
+            const taskDesc = document.createElement("p");
+            taskDesc.textContent = taskDescription;
+
+            // Append title and description to the task item
+            taskItem.appendChild(taskTitle);
+            taskItem.appendChild(taskDesc);
+
+            // Append the task item to the task list
+            document.getElementById("taskList").appendChild(taskItem);
+
+            // Clear the input field
+            document.getElementById("taskInput").value = "";
+        }
+    </script>
+
+</body>
+</html>
